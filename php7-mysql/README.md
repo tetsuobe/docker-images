@@ -1,4 +1,4 @@
-#PHP7 with MySQL support
+#PHP7.2 with MySQL support
 
 Driver:
 ```

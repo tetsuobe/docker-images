@@ -21,6 +21,10 @@ RUN apk update && apk add --no-cache --virtual .build-deps $BUILD_DEPS \
     && apk del .build-deps \
     && rm -rf /tmp/pear
 
+RUN curl -sS https://getcomposer.org/installer | php \
+    && mv composer.phar /usr/bin/composer \
+    && composer global require "hirak/prestissimo"
+
 ADD conf /etc/php7/conf.d/
 
 EXPOSE 9000

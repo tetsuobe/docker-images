@@ -28,6 +28,6 @@ RUN curl -sS https://getcomposer.org/installer | php \
     && chmod +x psysh \
     && mv psysh /usr/bin/psysh
 
-ADD conf /etc/php7/conf.d/
+ADD conf /usr/local/etc/php/conf.d/
 
 EXPOSE 22 9000

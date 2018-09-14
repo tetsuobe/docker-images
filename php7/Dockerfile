@@ -21,4 +21,6 @@ RUN apk update && apk add --no-cache --virtual .build-deps $BUILD_DEPS \
     && apk del .build-deps \
     && rm -rf /tmp/pear
 
+ADD conf /etc/php7/conf.d/
+
 EXPOSE 9000

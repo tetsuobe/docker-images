@@ -21,10 +21,7 @@ RUN apk update && apk add --no-cache --virtual .build-deps $BUILD_DEPS git opens
     && apk del .build-deps \
     && rm -rf /tmp/pear
 
-RUN curl -sS https://getcomposer.org/installer | php \
-    && mv composer.phar /usr/bin/composer \
-    && composer global require "hirak/prestissimo" \
-    && wget https://git.io/psysh \
+RUN wget https://git.io/psysh \
     && chmod +x psysh \
     && mv psysh /usr/bin/psysh
 

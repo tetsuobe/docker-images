@@ -10,10 +10,11 @@ ENV BUILD_DEPS \
                 g++ \
                 gcc \
                 make \
-                pcre-dev
+                pcre-dev \
+                libzip-dev
 
 RUN apk update && apk add --no-cache --virtual .build-deps $BUILD_DEPS \
-    && apk add bash icu-libs util-linux \
+    && apk add bash icu-libs util-linux libzip \
     && docker-php-ext-install zip mbstring intl opcache bcmath \
     && pecl install -o apcu \
     && pecl install -o uuid \

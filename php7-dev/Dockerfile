@@ -21,9 +21,7 @@ RUN apk update && apk add --no-cache --virtual .build-deps $BUILD_DEPS git opens
     && apk del .build-deps \
     && rm -rf /tmp/pear
 
-RUN wget https://git.io/psysh \
-    && chmod +x psysh \
-    && mv psysh /usr/bin/psysh
+RUN composer g require psy/psysh:@stable
 
 ADD conf /usr/local/etc/php/conf.d/
 

@@ -1,6 +1,6 @@
-FROM php:7.3-fpm-alpine
+FROM php:7.4-fpm-alpine
 
-MAINTAINER tetsuobe@gmail.com
+LABEL maintainer="tetsuobe@gmail.com"
 
 ENV BUILD_DEPS \
                 zlib-dev \

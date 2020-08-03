@@ -11,7 +11,8 @@ ENV BUILD_DEPS \
                 gcc \
                 make \
                 pcre-dev \
-                libzip-dev
+                libzip-dev \
+                oniguruma-dev
 
 RUN apk update && apk add --no-cache --virtual .build-deps $BUILD_DEPS \
     && apk add bash icu-libs util-linux libzip \

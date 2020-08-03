@@ -1,6 +1,6 @@
 FROM tetsuobe/docker-images:php7
 
-MAINTAINER tetsuobe@gmail.com
+LABEL maintainer="tetsuobe@gmail.com"
 
 ARG USER=root
 ARG PASSWORD=root

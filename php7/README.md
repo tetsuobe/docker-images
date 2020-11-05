@@ -12,3 +12,8 @@
 | apcu                 |
 | uuid                 |
 |----------------------|
+
+### Additional tools
+* bash
+* openssh
+* composer 

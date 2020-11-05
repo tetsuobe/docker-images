@@ -1,6 +1,11 @@
+FROM composer:latest AS composer
+
 FROM php:7.4-fpm-alpine
 
 LABEL maintainer="tetsuobe@gmail.com"
+
+ARG USER=root
+ARG PASSWORD=root
 
 ENV BUILD_DEPS \
                 zlib-dev \
@@ -12,7 +17,8 @@ ENV BUILD_DEPS \
                 make \
                 pcre-dev \
                 libzip-dev \
-                oniguruma-dev
+                oniguruma-dev \
+                openssh
 
 RUN apk update && apk add --no-cache --virtual .build-deps $BUILD_DEPS \
     && apk add bash icu-libs util-linux libzip \
@@ -20,13 +26,14 @@ RUN apk update && apk add --no-cache --virtual .build-deps $BUILD_DEPS \
     && pecl install -o apcu \
     && pecl install -o uuid \
     && docker-php-ext-enable apcu uuid \
+    && sed -i s/#PermitRootLogin.*/PermitRootLogin\ yes/ /etc/ssh/sshd_config \
+    && echo "${USER}:${PASSWORD}" | chpasswd \
+    && ssh-keygen -A \
     && apk del .build-deps \
     && rm -rf /tmp/pear
 
-RUN curl -sS https://getcomposer.org/installer | php \
-    && mv composer.phar /usr/bin/composer \
-    && composer global require "hirak/prestissimo"
+COPY --from=composer /usr/bin/composer /usr/bin/composer
 
 ADD conf /etc/php7/conf.d/
 
-EXPOSE 9000
+EXPOSE 22 9000

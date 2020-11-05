@@ -1,4 +1,4 @@
-#PHP7.2 (dev) with MySQL support
+## Base image for PHP applications - developer edition with MySQL support
 
 Driver:
 ```

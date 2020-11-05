@@ -9,8 +9,3 @@
 
 ### Additional tools
 * git
-* ssh
-* composer with [hirak/prestissimo](https://github.com/hirak/prestissimo)
-* [PsySH](https://github.com/bobthecow/psysh)
-
-> SSH is only for IDE integration to use container as remote interpreter 

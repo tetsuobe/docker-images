@@ -19,7 +19,7 @@ ENV BUILD_DEPS \
                 libzip-dev \
                 oniguruma-dev
 
-RUN apk update && apk add --no-cache --virtual .build-deps $BUILD_DEPS openssh \
+RUN apk update && apk add --no-cache --virtual .build-deps $BUILD_DEPS openssh acl \
     && apk add bash icu-libs util-linux libzip \
     && docker-php-ext-install zip mbstring intl opcache bcmath \
     && pecl install -o apcu \

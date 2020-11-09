@@ -4,9 +4,6 @@ FROM php:7.4-fpm-alpine
 
 LABEL maintainer="tetsuobe@gmail.com"
 
-ARG USER=root
-ARG PASSWORD=root
-
 ENV BUILD_DEPS \
                 zlib-dev \
                 icu-dev \
@@ -19,15 +16,12 @@ ENV BUILD_DEPS \
                 libzip-dev \
                 oniguruma-dev
 
-RUN apk update && apk add --no-cache --virtual .build-deps $BUILD_DEPS openssh acl \
-    && apk add bash icu-libs util-linux libzip \
+RUN apk update && apk add --no-cache --virtual .build-deps $BUILD_DEPS \
+    && apk add bash icu-libs util-linux libzip openssh acl \
     && docker-php-ext-install zip mbstring intl opcache bcmath \
     && pecl install -o apcu \
     && pecl install -o uuid \
     && docker-php-ext-enable apcu uuid \
-    && sed -i s/#PermitRootLogin.*/PermitRootLogin\ yes/ /etc/ssh/sshd_config \
-    && echo "${USER}:${PASSWORD}" | chpasswd \
-    && ssh-keygen -A \
     && apk del .build-deps \
     && rm -rf /tmp/pear
 
